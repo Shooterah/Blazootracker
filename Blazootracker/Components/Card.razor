@@ -1,0 +1,89 @@
+@* Card.razor *@
+
+<Tooltip TooltipText="@TooltipText" @onclick="ToggleCard">
+    <div class="card card-container @cardClass">
+        <div class="card-image">
+            <img src="@Image" alt="Image" />
+        </div>
+    </div>
+</Tooltip>
+
+<style>
+    .card-container {
+        /* curseur avec la main */
+        cursor: pointer;
+    }
+
+    .card {
+        background-color: #38474e;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.5s, filter 0.3s;
+        margin-bottom: 10px;
+        filter: grayscale(100%); /* Start with the card grayscale */
+    }
+
+    .card.active {
+        filter: none; /* Active card has no filter */
+    }
+
+    .card:hover {
+        transform: scale(1.1);
+    }
+
+    .card-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+</style>
+
+@code{
+
+    /// <summary>
+    /// Text que contiendra le tooltip de la card.
+    /// </summary>
+    [Parameter]
+    public string TooltipText { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Image que contiendra la card.
+    /// </summary>
+    [Parameter]
+    public string Image { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Etat de la card.
+    /// </summary>
+    private bool isActive = false;
+
+    /// <summary>
+    /// Classe CSS de la card.
+    /// </summary>
+    private string cardClass => isActive ? "active" : "";
+
+
+    /// <summary>
+    /// Permet de basculer l'état de la card.
+    /// </summary>
+    private void ToggleCard()
+    {
+        isActive = !isActive;
+    }
+
+}

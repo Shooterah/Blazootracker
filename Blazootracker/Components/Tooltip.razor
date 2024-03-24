@@ -1,0 +1,56 @@
+@* Tooltip.razor *@
+
+<div class="tooltip-container" @attributes="AdditionalAttributes">
+    @ChildContent
+    <div class="tooltip-content">
+        @TooltipText
+    </div>
+</div>
+
+<style>
+    .tooltip-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip-container .tooltip-content {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip-container:hover .tooltip-content {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+
+@code {
+    /// <summary>
+    /// Gets or sets the tooltip text.
+    /// </summary>
+    [Parameter] public string TooltipText { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the child content.
+    /// </summary>
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the additional attributes.
+    /// </summary>
+    [Parameter(CaptureUnmatchedValues = true)] public IDictionary<string, object> AdditionalAttributes { get; set; } = new Dictionary<string, object>();
+}
