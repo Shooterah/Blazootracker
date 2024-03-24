@@ -1,0 +1,55 @@
+# .gitignore pour un projet Blazor avec Radzen
+
+# Fichiers de build
+[Bb]in/
+[Oo]bj/
+[Rr]elease/
+[Dd]ebug/
+*.nupkg
+*.user
+*.userosscache
+*.dll
+*.exe
+*.pdb
+*.cache
+*.suo
+*.lock.json
+project.lock.json
+*.TestResults
+TestResults
+*.build.log
+
+# Fichiers de configuration de l'IDE
+.vs/
+*.slnx.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Fichiers de package
+# Le répertoire `packages/` peut être supprimé, mais il contient généralement des fichiers `.dll` qui ne devraient pas être contrôlés par git.
+# Enlever le commentaire de la ligne suivante si vous voulez ignorer ces fichiers.
+#packages/
+
+# Fichiers de publication
+publish/
+
+# Fichiers générés par Radzen
+radzen-temp/
+
+# Fichiers de cache de NuGet
+*.nupkg
+# Ignorez les fichiers de cache de NuGet.
+http-cache/
+hostfxr.dll
+hostpolicy.dll
+message.dll
+
+# Ignorez les fichiers de journalisation de performance de Visual Studio.
+servicehub/
+
+# Ignorez les fichiers de cache de ReSharper.
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
