@@ -1,5 +1,10 @@
 @* Card.razor *@
 
+@inject IJSRuntime JS
+
+<link href="css/card.css" rel="stylesheet" />
+<script src="Card.razor.js"></script>
+
 <Tooltip TooltipText="@TooltipText" @onclick="ToggleCard">
     <div class="card card-container @cardClass">
         <div class="card-image">
@@ -7,51 +12,6 @@
         </div>
     </div>
 </Tooltip>
-
-<style>
-    .card-container {
-        /* curseur avec la main */
-        cursor: pointer;
-    }
-
-    .card {
-        background-color: #38474e;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.5s, filter 0.3s;
-        margin-bottom: 10px;
-        filter: grayscale(100%); /* Start with the card grayscale */
-    }
-
-    .card.active {
-        filter: none; /* Active card has no filter */
-    }
-
-    .card:hover {
-        transform: scale(1.1);
-    }
-
-    .card-image {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card-image img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: cover;
-    }
-
-</style>
 
 @code{
 
@@ -81,9 +41,54 @@
     /// <summary>
     /// Permet de basculer l'état de la card.
     /// </summary>
-    private void ToggleCard()
+    private async void ToggleCard()
     {
         isActive = !isActive;
     }
 
 }
+
+<style>
+    .card-container {
+    /* curseur avec la main */
+    cursor: pointer;
+    position: relative;
+}
+
+.card {
+    background-color: #38474e;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s, filter 0.3s;
+    margin-bottom: 10px;
+    filter: grayscale(100%); /* Start with the card grayscale */
+}
+
+.card.active {
+    filter: none; /* Active card has no filter */
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+</style>

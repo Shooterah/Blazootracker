@@ -1,5 +1,7 @@
 .card-container {
+    /* curseur avec la main */
     cursor: pointer;
+    position: relative;
 }
 
 .card {
@@ -10,9 +12,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: filter 0.3s;
+    transition: transform 0.5s, filter 0.3s;
     margin-bottom: 10px;
-    filter: grayscale(100%);
+    filter: grayscale(100%); /* Start with the card grayscale */
+}
+
+.card.active {
+    filter: none; /* Active card has no filter */
 }
 
 .card:hover {
@@ -33,20 +39,4 @@
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
-}
-
-.animate {
-    animation: pulse-animation 0.5s ease forwards;
-}
-
-@keyframes pulse-animation {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
